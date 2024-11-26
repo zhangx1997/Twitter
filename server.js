@@ -4,24 +4,25 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+// Load environment variables
 dotenv.config();
 
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
-// Set up CORS options
+
+// Set up CORS options for production and development
 const corsOptions = {
-  origin: 'http://localhost:3001', // URL of your frontend React app
+  origin: process.env.FRONTEND_URL || 'http://localhost:3001', // Default to localhost in development
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true, // Allow cookies to be sent with requests
 };
+
 const app = express();
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:3001', credentials: true }));
+app.use(cors(corsOptions));  // Use dynamic CORS based on the environment
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
-app.use('/api/posts', postRoutes);
 
 // Root route
 app.get("/", (req, res) => {
