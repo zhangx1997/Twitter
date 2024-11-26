@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "npm run test"
+    "test": "echo \"No tests specified\" && exit 0",
+    "build": "echo \"No build step needed for backend\""
   },
   "keywords": [],
   "author": "",
