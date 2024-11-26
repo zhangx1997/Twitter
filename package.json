@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npm run start",
-    "build": "npm run build",
-    "test": "npm run test",
-    "dev": "npm run dev"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "npm run build --prefix client",
+    "test": "npm run test"
   },
   "keywords": [],
   "author": "",
