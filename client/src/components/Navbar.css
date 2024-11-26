@@ -1,0 +1,51 @@
+/* src/components/Navbar.css */
+.navbar {
+  background-color: #1da1f2; /* Twitter blue */
+  padding: 10px 20px;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.navbar-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
