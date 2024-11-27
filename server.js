@@ -13,7 +13,7 @@ const postRoutes = require('./routes/postRoutes');
 
 // Set up CORS options for production and development
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:3001', // Default to localhost in development
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Default to localhost in development
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true, // Allow cookies to be sent with requests
 };
@@ -24,11 +24,6 @@ const app = express();
 app.use(cors(corsOptions));  // Use dynamic CORS based on the environment
 app.use(express.json());
 app.use(cookieParser());
-
-// Root route
-app.get("/", (req, res) => {
-  res.send("Server is running. Welcome!");
-});
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -44,9 +39,10 @@ if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static(path.join(__dirname, 'client/build')));
 
-  // Serve the frontend React app for any route not matching the API
+  // Serve the React app for the root and any unmatched routes
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    console.log('Serving React frontend...');
+    res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
   });
 }
 
