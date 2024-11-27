@@ -13,7 +13,7 @@ const postRoutes = require('./routes/postRoutes');
 
 // Set up CORS options for production and development
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Default to localhost in development
+  origin: process.env.FRONTEND_URL || 'http://localhost:10000', // Default to localhost in development
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true, // Allow cookies to be sent with requests
 };
