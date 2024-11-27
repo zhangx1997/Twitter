@@ -9,7 +9,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:10000/api/users/login', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

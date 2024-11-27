@@ -31,14 +31,14 @@ const Register = () => {
     }
 
     try {
-      // Send POST request to register user (replace the URL with your backend API)
-      const response = await fetch('http://localhost:10000/api/users/register', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
       });
+      
 
       if (!response.ok) {
         throw new Error('Failed to register user');

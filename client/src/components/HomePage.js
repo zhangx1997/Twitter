@@ -9,7 +9,7 @@ function HomePage() {
   // Fetch all posts on initial load
   useEffect(() => {
     setLoading(true); // Start loading
-    fetch('http://localhost:10000/api/posts')
+    fetch(`${process.env.REACT_APP_API_URL}/posts`) 
       .then(response => response.json())
       .then(data => {
         setPosts(data);

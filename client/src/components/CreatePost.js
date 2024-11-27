@@ -21,7 +21,7 @@ const CreatePost = () => {
 
     // Send the new post to the backend
     try {
-      const response = await fetch('http://localhost:10000/api/posts', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
