@@ -9,7 +9,7 @@ function HomePage() {
   // Fetch all posts on initial load
   useEffect(() => {
     setLoading(true); // Start loading
-    fetch('http://localhost:3000/api/posts')
+    fetch('http://localhost:10000/api/posts')
       .then(response => response.json())
       .then(data => {
         setPosts(data);
@@ -38,7 +38,7 @@ function HomePage() {
 
     // Send the new post to the backend
     try {
-      const response = await fetch('http://localhost:3000/api/posts', {
+      const response = await fetch('http://localhost:10000/api/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ function HomePage() {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
+      const response = await fetch(`http://localhost:10000/api/posts/${postId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`, // Attach the token for authentication

@@ -13,7 +13,7 @@ const Navbar = () => {
     const token = localStorage.getItem('authToken');
     
     if (token) {
-      fetch('http://localhost:3000/api/users/current', {
+      fetch('http://localhost:10000/api/users/current', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -30,7 +30,7 @@ const Navbar = () => {
   // Handle login logic
   const handleLogin = async (username, password) => {
     try {
-      const response = await fetch('http://localhost:3000/api/users/login', {
+      const response = await fetch('http://localhost:10000/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const Navbar = () => {
       navigate('/login'); // Redirect to the login page
   
       // Notify the server about the logout (optional)
-      const response = await fetch('http://localhost:3000/api/users/logout', {
+      const response = await fetch('http://localhost:10000/api/users/logout', {
         method: 'GET',
       });
   
