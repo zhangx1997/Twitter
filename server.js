@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 // Load environment variables
 dotenv.config();
@@ -37,6 +38,17 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
+
+// Serve React frontend in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+  // Serve the frontend React app for any route not matching the API
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
 
 // Start the Server
 const PORT = process.env.PORT || 3000;
