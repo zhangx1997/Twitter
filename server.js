@@ -21,7 +21,7 @@ const corsOptions = {
 const app = express();
 
 // Middleware
-app.use(cors(corsOptions));  // Use dynamic CORS based on the environment
+app.use(cors());  // Use dynamic CORS based on the environment
 app.use(express.json());
 app.use(cookieParser());
 
