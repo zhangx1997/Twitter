@@ -1,3 +1,4 @@
+// userController.js
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -33,24 +34,25 @@ const loginUser = async (req, res) => {
   const { username, password } = req.body;
 
   try {
+    // Find user by username
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(400).json({ message: 'Invalid username or password' });
     }
 
-    // Compare password with hashed password stored in DB
+    // Compare the provided password with the hashed password in DB
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Incorrect password' }); // Specific message for wrong password
+      return res.status(400).json({ message: 'Incorrect password' });
     }
 
-    // Generate JWT token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
-    });
+    // Generate a JWT token
+    const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.json({ token });
+    // Send the token in the response
+    res.status(200).json({ message: 'Logged in successfully', token });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 };
